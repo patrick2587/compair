@@ -1,0 +1,215 @@
+{
+  "$defs": {
+    "Change": {
+      "properties": {
+        "change_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Stable identifier for the change (e.g. UUID).",
+          "title": "Change Id"
+        },
+        "old_excerpt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Minimal snippet from document A.",
+          "title": "Old Excerpt"
+        },
+        "new_excerpt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Minimal snippet from document B.",
+          "title": "New Excerpt"
+        },
+        "change_classification": {
+          "$ref": "#/$defs/ChangeClassification",
+          "description": "The change classification, including optional impact analysis for critical changes only."
+        }
+      },
+      "required": [
+        "change_classification"
+      ],
+      "title": "Change",
+      "type": "object"
+    },
+    "ChangeClassification": {
+      "properties": {
+        "change_type": {
+          "enum": [
+            "added",
+            "removed",
+            "modified",
+            "moved"
+          ],
+          "title": "Change Type",
+          "type": "string"
+        },
+        "category": {
+          "enum": [
+            "Critical",
+            "Minor",
+            "Formatting"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Model confidence for this item.",
+          "title": "Confidence"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Clause identifier if present (e.g., '5.1.1', 'Appendix 3').",
+          "title": "Location"
+        },
+        "impact_analysis": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ImpactAnalysis"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional impact analysis for critical changes only. Otherwise, set to None."
+        }
+      },
+      "required": [
+        "change_type",
+        "category"
+      ],
+      "title": "ChangeClassification",
+      "type": "object"
+    },
+    "DifferenceReport": {
+      "properties": {
+        "changes": {
+          "description": "The list of detected and categorized changes.",
+          "items": {
+            "$ref": "#/$defs/Change"
+          },
+          "title": "Changes",
+          "type": "array"
+        },
+        "summary": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional high-level summary (<= 120 words).",
+          "title": "Summary"
+        }
+      },
+      "required": [
+        "changes"
+      ],
+      "title": "DifferenceReport",
+      "type": "object"
+    },
+    "ImpactAnalysis": {
+      "properties": {
+        "severity": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "party_affected": {
+          "items": {
+            "enum": [
+              "Data Controller",
+              "Data Processor",
+              "Both"
+            ],
+            "type": "string"
+          },
+          "title": "Party Affected",
+          "type": "array"
+        },
+        "rationale": {
+          "description": "One-sentence explanation of the legal/operational impact.",
+          "title": "Rationale",
+          "type": "string"
+        }
+      },
+      "required": [
+        "severity",
+        "party_affected",
+        "rationale"
+      ],
+      "title": "ImpactAnalysis",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "document_a": {
+      "description": "Parsed markdown text of the first PDF.",
+      "title": "Document A",
+      "type": "string"
+    },
+    "document_b": {
+      "description": "Parsed markdown text of the second PDF.",
+      "title": "Document B",
+      "type": "string"
+    },
+    "difference_report": {
+      "$ref": "#/$defs/DifferenceReport",
+      "description": "The difference report."
+    }
+  },
+  "required": [
+    "document_a",
+    "document_b",
+    "difference_report"
+  ],
+  "title": "DifferenceReportWithInputs",
+  "type": "object"
+}

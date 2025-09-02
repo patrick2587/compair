@@ -1,0 +1,41 @@
+[project]
+name = "compair"
+version = "0.1.0"
+description = "CLI tool for AI-based legal document comparison"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dotenv>=0.9.9",
+    "openai>=1.102.0",
+    "pymupdf4llm>=0.0.17",
+]
+
+[project.scripts]
+compair = "compair.app:app"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["compair"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+    "ruff>=0.12.11",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["I", "RUF022", "F"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s %(levelname)s %(name)s: %(message)s"
