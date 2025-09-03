@@ -97,7 +97,7 @@ dependencies = [
 
 ## Approach
 
-The task requires implementaing a processing pipeline relying on multiple NLP components. The choice for the individual components reaches from classical NLP building blocks to a end-to-end solution implemented with a single LLM API call. In-between is whole spectrum of hybrid approaches which differ regarding latency, accuracy, token costs among others. The table below explains that rationale. The ***llm-light*** is the chosen solution approach providing the best trade-off regarding the named requirements.  
+The task requires implementaing a processing pipeline relying on multiple NLP components. The choice for the individual components reaches from classical NLP building blocks to a end-to-end solution implemented with a single LLM API call. In-between, there is a whole spectrum of hybrid approaches which differ regarding latency, accuracy, token costs among others. The table below illustrates that rationale. The ***llm-light*** is the chosen solution approach providing the best trade-off regarding the named requirements. *llm-only* and *llm-heavy* are also implkemented but didn't lead to satisfying results (plus creating high latency and token cost). 
 
 |                       | no-llm      | ***llm-light***   | ... | llm-heavy   | llm-only |
 |-----------------------|-------------|-------------|-----|-------------|----------|
@@ -106,7 +106,7 @@ The task requires implementaing a processing pipeline relying on multiple NLP co
 | clean-up              | textacy     | textacy     |     | textacy     | LLM API  |
 | alignment             | rule-based  | rule-based  |     | LLM API     | LLM API  |
 | change detection      | difflib     | difflib     |     | LLM API     | LLM API  |
-| change categorization | rule-based  | LLM API  |     | LLM API     | LLM API  |
+| change categorization | rule-based  | LLM API     |     | LLM API     | LLM API  |
 | impact analysis       | rule-based  | LLM API     |     | LLM API     | LLM API  |
 | output generation     | rule-based  | rule-based  |     | LLM API     | LLM API  |
 
@@ -132,6 +132,28 @@ uv run compair tests/resources/1.pdf tests/resources/2.pdf -o generated/llm_ligh
 ```
 
 Resulting file can be found under [generated/llm_light_diff_report.json](generated/llm_light_diff_report.json)
+
+## Limitations & Edge-Cases
+
+The following discussion refers to the approach ***llm-light*** which turned out to work most reliable.
+
+- **parsing**: Current parser directly parses to markdown without further alignment. Parsing individual sentences and align those would benefit the down-stream processes. In general, the only argument for using markdown was to have a nice layout in the web viewer. If the results are exported, then there is no benefit.
+
+- **normalization**: Apply proper normalization which can improve the quality of the change detection, e.g. using textacy.
+
+- **alignment**: Currently, no explicit alignment step is performed. The diff is directly applied to the markdown. Paragrpah, clause or sentence level alignment would further improve the detection.
+
+- **change-detection**: The current approach uses character based change detection using `difflib`. Using unified diff format on large text chunks introduces noise and makes change detection more challenging (e.g. multiple changes in same diff hunk). Better approach would be to use token based change detection first.
+
+- **moved sections**: Not covered by simple difflib approach as currently used. Could be done by proper chunking plus pair-comparison / convolution using cosine similarity metric (for exmaple). The *llm-heavy* approach should be able to deal with it.
+
+- **referencing**: Current changes are derived from unified diff format including line references to the original text. This is sub-optimal if only single chars or words changed or if multiple different changes occur in a single diff hunk. Often the detected text chunks are not precisely located.
+
+- **impact analysis**: This is the expert task in the pipeline requiring a lot of domain knowledge. For exmaple, few-shot exmaples in the prompt could help to improve the quality.
+
+- **export**: Simple export functionality for critical changes in CSV format. A report like Word document might be more appropriate for legal teams?
+
+- **latency**: Can be improved parallel LLM calls for the detected changes.
 
 
 ## Web viewer

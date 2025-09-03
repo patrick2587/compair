@@ -43,13 +43,15 @@ const ChangeCard: React.FC<ChangeCardProps> = ({ changeId, category, changeType,
             <div className="k">Party</div>
             <div className="v">{impact.party_affected.join(', ')}</div>
           </div>
-          <div className="row">
-            <div className="k">Impact</div>
-            <div className="v">{impact.rationale}</div>
-          </div>
+          {impact.rationale ? (
+            <div className="row">
+              <div className="k">Impact</div>
+              <div className="v">{impact.rationale}</div>
+            </div>
+          ) : null}
         </>
       ) : null}
-      {summary ? (
+      {(!impact?.rationale && summary) ? (
         <div className="row">
           <div className="k">Change</div>
           <div className="v">{summary}</div>

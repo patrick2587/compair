@@ -17,7 +17,7 @@ from compair.models import (
 from compair.preprocessing import diff_texts, get_markdown_from_pdf
 
 MODEL = "gpt-4.1"
-PROMPT_DIR = Path(__file__).parent.parent / "compair" / "prompts"
+PROMPT_DIR = Path(__file__).parent / "prompts"
 
 
 load_dotenv()  # load OPENAI_API_KEY
@@ -54,7 +54,7 @@ def run_llm_light(
         messages = [
             {
                 "role": "system",
-                "content": (PROMPT_DIR / "systen_prompt_llm_light.md").read_text(encoding="utf-8"),
+                "content": (PROMPT_DIR / "system_prompt_llm_light.md").read_text(encoding="utf-8"),
             },
             {
                 "role": "user",
@@ -135,7 +135,7 @@ def run_llm_heavy(
     messages = [
         {
             "role": "system",
-            "content": (PROMPT_DIR / "systen_prompt_llm_heavy.md").read_text(encoding="utf-8"),
+            "content": (PROMPT_DIR / "system_prompt_llm_heavy.md").read_text(encoding="utf-8"),
         },
         {
             "role": "user",
@@ -197,7 +197,7 @@ def run_llm_only(
     messages = [
         {
             "role": "system",
-            "content": (PROMPT_DIR / "systen_prompt_llm_only.md").read_text(encoding="utf-8"),
+            "content": (PROMPT_DIR / "system_prompt_llm_only.md").read_text(encoding="utf-8"),
         },
         {
             "role": "user",

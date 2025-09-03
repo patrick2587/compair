@@ -55,9 +55,9 @@ class DiffHunk(BaseModel):
                     new_excerpt="\n".join(current_new_excerpt) if current_new_excerpt else None,
                     hunk_header=HunkHeader(
                         start_line_old=start_old,
-                        end_line_old=start_old + len_old,
+                        end_line_old=start_old + len_old,  # FIX: -1 since last line is included
                         start_line_new=start_new,
-                        end_line_new=start_new + len_new,
+                        end_line_new=start_new + len_new,  # FIX: -1 since last line is included
                     ),
                 )
             )
