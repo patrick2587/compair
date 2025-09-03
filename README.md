@@ -24,6 +24,11 @@ AZURE_OPENAI_API_KEY=...
 
 ## CLI tools usage
 
+- **Install dependencies** (creates/updates the virtual environment):
+  ```bash
+  uv sync
+  ```
+
 - **Help message**:
 ```bash
 uv run compair --help
@@ -47,11 +52,6 @@ options:
 ```
 
 ## Developer Usage
-
-- **Install dependencies** (creates/updates the virtual environment):
-  ```bash
-  uv sync
-  ```
 
 - **Check code is formatted** (no changes are made):
   ```bash
