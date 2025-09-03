@@ -106,6 +106,7 @@ const DiffViewer: React.FC<DiffViewerProps> = ({ data }) => {
           confidence={hoverInfo.change.change_classification.confidence ?? undefined}
           location={hoverInfo.change.change_classification.location ?? undefined}
           impact={hoverInfo.change.change_classification.impact_analysis ?? null}
+          summary={hoverInfo.change.change_classification.summary ?? undefined}
           style={{ left: hoverInfo.x, top: hoverInfo.y }}
         />
       ) : null}

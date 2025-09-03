@@ -8,11 +8,12 @@ interface ChangeCardProps {
   confidence?: number | null
   location?: string | null
   impact?: ImpactAnalysis | null
+  summary?: string | null
   onClose?: () => void
   style?: React.CSSProperties
 }
 
-const ChangeCard: React.FC<ChangeCardProps> = ({ changeId, category, changeType, confidence, location, impact, style }) => {
+const ChangeCard: React.FC<ChangeCardProps> = ({ changeId, category, changeType, confidence, location, impact, summary, style }) => {
   const frameClass = category === 'Critical' ? 'frame-critical' : category === 'Minor' ? 'frame-minor' : 'frame-formatting'
   const typeBadge = `badge-type-${changeType}`
   const catBadge = `badge-cat-${category}`
@@ -43,10 +44,16 @@ const ChangeCard: React.FC<ChangeCardProps> = ({ changeId, category, changeType,
             <div className="v">{impact.party_affected.join(', ')}</div>
           </div>
           <div className="row">
-            <div className="k">Rationale</div>
+            <div className="k">Impact</div>
             <div className="v">{impact.rationale}</div>
           </div>
         </>
+      ) : null}
+      {summary ? (
+        <div className="row">
+          <div className="k">Change</div>
+          <div className="v">{summary}</div>
+        </div>
       ) : null}
     </div>
   )

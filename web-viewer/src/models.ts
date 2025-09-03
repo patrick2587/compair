@@ -13,6 +13,7 @@ export interface ChangeClassification {
   confidence?: number | null
   location?: string | null
   impact_analysis?: ImpactAnalysis | null
+  summary?: string | null
 }
 
 export interface HunkHeader {

@@ -112,6 +112,10 @@ class ChangeClassification(BaseModel):
         default=None,
         description="Optional impact analysis for critical changes only. Otherwise, set to None.",
     )
+    summary: Optional[str] = Field(
+        default=None,
+        description="Optional high-level summary as single sentence.",
+    )
 
 
 class Change(BaseModel):
@@ -129,7 +133,7 @@ class DifferenceReport(BaseModel):
     changes: List[Change] = Field(description="The list of detected and categorized changes.")
     summary: Optional[str] = Field(
         default=None,
-        description="Optional high-level summary (<= 120 words).",
+        description="Optional high-level summary as single sentence.",
     )
 
 

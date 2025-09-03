@@ -91,6 +91,19 @@
           ],
           "default": null,
           "description": "Optional impact analysis for critical changes only. Otherwise, set to None."
+        },
+        "summary": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional high-level summary as single sentence.",
+          "title": "Summary"
         }
       },
       "required": [
@@ -165,7 +178,7 @@
             }
           ],
           "default": null,
-          "description": "Optional high-level summary (<= 120 words).",
+          "description": "Optional high-level summary as single sentence.",
           "title": "Summary"
         }
       },

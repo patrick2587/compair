@@ -1,6 +1,7 @@
 import argparse
-import json
 import logging
+import json
+from pathlib import Path
 
 from dotenv import load_dotenv
 
@@ -39,17 +40,18 @@ def app():
     logging.info(f"Processing {args.file1} and {args.file2} with {args.analysis_type} analysis type!")
 
     if args.analysis_type == "llm-light":
-        result = pipelines.run_llm_light(args.file1, args.file2)
+        report = pipelines.run_llm_light(args.file1, args.file2)
     elif args.analysis_type == "llm-heavy":
-        result = pipelines.run_llm_heavy(args.file1, args.file2)
+        report = pipelines.run_llm_heavy(args.file1, args.file2)
     elif args.analysis_type == "llm-only":
-        result = pipelines.run_llm_only(args.file1, args.file2)
+        report = pipelines.run_llm_only(args.file1, args.file2)
     else:
         raise ValueError(f"Invalid analysis type: {args.analysis_type}")
 
     # Write result to output file
-    with open(args.output, "w") as f:
-        json.dump(result.model_dump(), f)
+    Path(args.output).write_text(
+        json.dumps(report.model_dump(), indent=2, ensure_ascii=False), encoding="utf-8"
+    )
 
 
 if __name__ == "__main__":
