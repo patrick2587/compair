@@ -2,6 +2,7 @@
 
 import logging
 from difflib import unified_diff
+import re
 
 from pymupdf4llm import to_markdown
 
@@ -32,7 +33,7 @@ def parse_pdf_to_markdown(file_path: str) -> str:
 
 
 def cleanup_markdown(markdown_text: str) -> str:
-    """Normalize markdown extracted from PDFs to reduce spurious diffs.
+    """Clean-up markdown extracted from PDFs to reduce spurious diffs.
 
     - Collapse single newlines within paragraphs to spaces
     - Remove blank lines entirely (no empty lines in output)
@@ -43,7 +44,7 @@ def cleanup_markdown(markdown_text: str) -> str:
         markdown_text: Markdown string extracted from a PDF.
 
     Returns:
-        A normalized markdown string with reduced noise.
+        A cleaned-up markdown string with reduced noise.
 
     Raises:
         ValueError: If ``markdown_text`` is not a string.
@@ -56,7 +57,6 @@ def cleanup_markdown(markdown_text: str) -> str:
 
     # Split into paragraphs separated by blank lines, normalize each paragraph by
     # replacing internal single newlines with spaces, preserving code fences heuristically.
-    import re
 
     paragraphs = re.split(r"\n\s*\n", text)
 
@@ -74,7 +74,7 @@ def cleanup_markdown(markdown_text: str) -> str:
     non_empty_paragraphs = [p for p in normalized_paragraphs if p]
     normalized = "\n".join(non_empty_paragraphs)
     normalized = re.sub(r"[ \t]+$", "", normalized, flags=re.MULTILINE)
-    logging.info(f"Normalized markdown: output length={len(normalized)} characters")
+    logging.info(f"Cleaned-up markdown: output length={len(normalized)} characters")
     return normalized
 
 

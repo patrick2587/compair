@@ -4,7 +4,7 @@ import logging
 
 from dotenv import load_dotenv
 
-from compair import llm
+from compair import pipelines
 
 load_dotenv()
 
@@ -39,11 +39,11 @@ def app():
     logging.info(f"Processing {args.file1} and {args.file2} with {args.analysis_type} analysis type!")
 
     if args.analysis_type == "llm-light":
-        result = llm.run_llm_light(args.file1, args.file2)
+        result = pipelines.run_llm_light(args.file1, args.file2)
     elif args.analysis_type == "llm-heavy":
-        result = llm.run_llm_heavy(args.file1, args.file2)
+        result = pipelines.run_llm_heavy(args.file1, args.file2)
     elif args.analysis_type == "llm-only":
-        result = llm.run_llm_only(args.file1, args.file2)
+        result = pipelines.run_llm_only(args.file1, args.file2)
     else:
         raise ValueError(f"Invalid analysis type: {args.analysis_type}")
 

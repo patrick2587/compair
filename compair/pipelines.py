@@ -84,7 +84,7 @@ def run_llm_light(
     logging.info("Running llm-light pipeline")
     document_a_markdown = get_markdown_from_pdf(str(pdf_path_a))
     document_b_markdown = get_markdown_from_pdf(str(pdf_path_b))
-    diff_hunks = diff_texts(document_a_markdown, document_b_markdown, n_context_lines=3)
+    diff_hunks = diff_texts(document_a_markdown, document_b_markdown, n_context_lines=1)
 
     changes = []
     for i, diff_hunk in enumerate(diff_hunks):
@@ -179,7 +179,7 @@ def run_llm_only(
     """Use Chat Completions structured parsing with two PDF uploads.
 
     Attaches both PDFs as file parts (data URLs) in a single user message. The response is parsed
-    directly into a DifferenceReport instance.
+    directly into a DifferenceReportWithInputs instance.
 
     Args:
         pdf_path_a: Path to the first PDF file.

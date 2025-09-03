@@ -46,11 +46,6 @@ options:
                         Type of analysis to perform
 ```
 
-- **Run on exmaple data**:
-```bash
-uv run compair tests/resources/1.pdf tests/resources/2.pdf -o generated/llm_light_diff_report.json -a llm-light
-```
-
 ## Developer Usage
 
 - **Install dependencies** (creates/updates the virtual environment):
@@ -83,14 +78,26 @@ uv run compair tests/resources/1.pdf tests/resources/2.pdf -o generated/llm_ligh
   uv run darglint compair
   ```
 
+## Dependencies
+
+The CLI tool is configured with the following three packages and python3.12 (see pyproject.toml)
+
+```bash
+dependencies = [
+    "dotenv>=0.9.9",
+    "openai>=1.102.0",
+    "pymupdf4llm>=0.0.17",
+]
+```
+
 - **Create dependency list**:
   ```bash
-  uv export --format requirements-txt --no-hashes --no-build > generated/requirements.txt
+  uv export --format requirements-txt --no-hashes --no-build --no-dev > generated/requirements.txt
   ```
 
 ## Approach
 
-The task requires implementaing a processing pipeline relying on multiple NLP components. The choice for the individual components reaches from classical NLP building blocks till a end-to-end solution implemented with a single LLM API call. In-between is whole spectrum of hybrid approaches which differ regarding latency, accuracy, token costs among others. The table below explains that rationale. The ***llm-light*** is the chosen solution approach providing the best trade-off regarding the named requirements.  
+The task requires implementaing a processing pipeline relying on multiple NLP components. The choice for the individual components reaches from classical NLP building blocks to a end-to-end solution implemented with a single LLM API call. In-between is whole spectrum of hybrid approaches which differ regarding latency, accuracy, token costs among others. The table below explains that rationale. The ***llm-light*** is the chosen solution approach providing the best trade-off regarding the named requirements.  
 
 |                       | no-llm      | ***llm-light***   | ... | llm-heavy   | llm-only |
 |-----------------------|-------------|-------------|-----|-------------|----------|
@@ -116,6 +123,16 @@ The task requires implementaing a processing pipeline relying on multiple NLP co
 
 - **llm-only**: End-to-end LLM pipeline. Parsing is handled by the LLM API provider. Maximizes
   adaptability and speed of iteration, but is the least deterministic and most costly to operate.
+
+## Result
+
+- **Run on exmaple data**:
+```bash
+uv run compair tests/resources/1.pdf tests/resources/2.pdf -o generated/llm_light_diff_report.json -a llm-light
+```
+
+Resulting file can be found under [generated/llm_light_diff_report.json](generated/llm_light_diff_report.json)
+
 
 ## Web viewer
 

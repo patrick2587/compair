@@ -207,3 +207,17 @@ marimo/_lsp/
 __marimo__/
 
 **/.DS_Store
+
+# Node/Vite (web-viewer)
+web-viewer/node_modules/
+web-viewer/.vite/
+web-viewer/dist/
+web-viewer/.eslintcache
+web-viewer/.cache/
+web-viewer/.turbo/
+web-viewer/npm-debug.log*
+web-viewer/yarn-debug.log*
+web-viewer/yarn-error.log*
+web-viewer/pnpm-debug.log*
+web-viewer/.npmrc
+web-viewer/package-lock.json

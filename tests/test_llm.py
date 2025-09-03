@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from compair.llm import run_llm_heavy, run_llm_light
+from compair.pipelines import run_llm_heavy, run_llm_light
 
 RESOURCES_DIR = Path(__file__).parent / "resources"
 RESULTS_DIR = Path(__file__).parent.parent / "generated"
