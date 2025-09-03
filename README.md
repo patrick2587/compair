@@ -13,7 +13,44 @@
     ```
   - Docs: [`https://docs.astral.sh/uv/`](https://docs.astral.sh/uv/)
 
-## Usage
+- **LLM API**: The implementation uses the OpenAI LLM APIs which can be used via OpenAI or Azure. This requires to provide an API key in the `.env` file. To configure one of both is enough. *NOTE*: the end-to-end approach *LLM-only* relies on PDF file upload and will only work with OpenAI, not AzureOpenAI.
+
+  ```bash
+OPENAI_API_KEY=...
+AZURE_OPENAI_ENDPOINT=...
+AZURE_OPENAI_API_KEY=...
+
+  ```
+
+
+## CLI tools usage
+  - **Help message**:
+  ```bash
+  uv run compair --help
+  ```
+  ```bash
+usage: compair [-h] [-o OUTPUT] [-a {llm-light,llm-heavy,llm-only}] file1 file2
+
+CLI tool for AI-based legal document comparison.
+
+positional arguments:
+file1                 Path to the first file to compare
+file2                 Path to the second file to compare
+
+options:
+-h, --help            show this help message and exit
+-o OUTPUT, --output OUTPUT
+                        Path to the output json file
+-a {llm-light,llm-heavy,llm-only}, --analysis-type {llm-light,llm-heavy,llm-only}
+                        Type of analysis to perform
+  ```
+
+  - **Run on exmaple data**:
+  ```bash
+  uv run compair tests/resources/1.pdf tests/resources/2.pdf -o generated/llm_light_diff_report.json -a llm-light
+  ```
+
+## Developer Usage
 
 - **Install dependencies** (creates/updates the virtual environment):
   ```bash
@@ -30,6 +67,21 @@
   uv run ruff check .
   ```
 
+- **Run tests**:
+  ```bash
+  uv run pytest -v
+  ```
+
+- **Type check**:
+  ```bash
+  uv run mypy
+  ```
+
+- **Docstring lint**:
+  ```bash
+  uv run darglint compair
+  ```
+
 - **Create dependency list**:
   ```bash
   uv export --format requirements-txt --no-hashes --no-build > generated/requirements.txt
@@ -37,14 +89,16 @@
 
 ## Approach
 
-|                       | no-llm      | llm-light   | ... | llm-heavy   | llm-only |
+The task requires implementaing a processing pipeline relying on multiple NLP components. The choice for the individual components reaches from classical NLP building blocks till a end-to-end solution implemented with a single LLM API call. In-between is whole spectrum of hybrid approaches which differ regarding latency, accuracy, token costs among others. The table below explains that rationale. The ***llm-light*** is the chosen solution approach providing the best trade-off regarding the named requirements.  
+
+|                       | no-llm      | ***llm-light***   | ... | llm-heavy   | llm-only |
 |-----------------------|-------------|-------------|-----|-------------|----------|
 | parsing               | pymupdf4llm | pymupdf4llm |     | pymupdf4llm | LLM API  |
 | normalization         | textacy     | textacy     |     | textacy     | LLM API  |
 | clean-up              | textacy     | textacy     |     | textacy     | LLM API  |
 | alignment             | rule-based  | rule-based  |     | LLM API     | LLM API  |
 | change detection      | difflib     | difflib     |     | LLM API     | LLM API  |
-| change categorization | rule-based  | rule-based  |     | LLM API     | LLM API  |
+| change categorization | rule-based  | LLM API  |     | LLM API     | LLM API  |
 | impact analysis       | rule-based  | LLM API     |     | LLM API     | LLM API  |
 | output generation     | rule-based  | rule-based  |     | LLM API     | LLM API  |
 
@@ -53,8 +107,7 @@
   `difflib` for change detection, rule-based categorization, impact analysis, and output generation.
 
 - **llm-light**: Primarily deterministic with selective LLM assistance. Preprocessing, alignment,
-  change detection, categorization, and output generation remain rule-based; the LLM is used for
-  impact analysis to add expert reasoning while preserving traceability.
+  change detection, and output generation remain rule-based; the LLM is used for change categorization and impact analysis to add expert reasoning while preserving traceability.
 
 - **llm-heavy**: Deterministic preprocessing (parsing/normalization/clean-up via `pymupdf4llm` and
   textacy), then delegate alignment, change detection, categorization, impact analysis, and output
@@ -63,15 +116,26 @@
 - **llm-only**: End-to-end LLM pipeline. Parsing is handled by the LLM API provider. Maximizes
   adaptability and speed of iteration, but is the least deterministic and most costly to operate.
 
-- **hybrid**: Many practical setups blend deterministic steps with selective LLM calls for a balance
-  of cost, speed, and explainability:
-  - LLM-assisted normalization: use classical preprocessing first, then invoke an LLM to resolve
-    stubborn layout issues (tables, footnotes) when heuristics fail.
-  - Heuristic alignment with LLM tie-breakers: align by anchors and structure; ask an LLM only for
-    ambiguous sections (e.g., reordered clauses).
-  - Rule-first categorization with LLM fallback: apply precise rules; backstop edge cases with an LLM
-    for nuanced classification.
-  - Deterministic diff, LLM impact narrative: compute changes with `difflib`; have the LLM explain
-    legal/operational implications and generate summaries.
-  - Confidence thresholds and human-in-the-loop: escalate to LLM or reviewer only when signals
-    (similarity, coverage) drop below thresholds.
+## Web viewer
+
+An interactive web viewer is included to explore comparison results visually.
+
+Features:
+- Side-by-side markdown rendering of both documents
+- Highlighting by category (red: Critical, yellow: Minor, green: Formatting)
+- Hover cards with details (change type, severity, party, rationale, ...)
+- Synced scrolling between panes
+- Upload a JSON file (matching `generated/api.json` schema) to render
+
+Getting started:
+```bash
+cd web-viewer
+npm install
+npm run dev
+```
+
+Then open the shown local URL in your browser. Use the Upload JSON button to select a file.
+
+Screenshot:
+
+![Web viewer](docs/webviewer.png)

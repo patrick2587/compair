@@ -5,219 +5,355 @@
     "changes": [
       {
         "change_id": "1",
-        "location": "2.1",
-        "change_type": "modified",
-        "category": "Critical",
-        "severity": "high",
-        "party_affected": [
-          "Both"
-        ],
-        "rationale": "The GDPR applicability date in B is stated as 26 May 2018 instead of 25 May 2018, creating ambiguity about compliance timing.",
-        "old_excerpt": "will be applicable on 25 May 2018 (\"GDPR\"). Irrespective of the general use and reference to GDPR in this Data Processing Agreement, the parties are not obliged to comply with GDPR before 25 May 2018.",
-        "new_excerpt": "will be applicable on 26 May 2018 (\"GDPR\"). Irrespective of the general use and reference to GDPR in this Data Processing Agreement, the parties are not obliged to comply with GDPR before 25 May 2018.",
-        "confidence": 0.98
+        "diff_hunk": {
+          "unified_diff": "- on the free movement of such data that entered into force on 24 May 2016 and will be applicable on 25 May 2018 (\"GDPR\").\n+ on the free movement of such data that entered into force on 24 May 2016 and will be applicable on 26 May 2018 (\"GDPR\").",
+          "old_excerpt": "on the free movement of such data that entered into force on 24 May 2016 and will be applicable on 25 May 2018 (\"GDPR\").",
+          "new_excerpt": "on the free movement of such data that entered into force on 24 May 2016 and will be applicable on 26 May 2018 (\"GDPR\").",
+          "hunk_header": {
+            "start_line_old": 24,
+            "end_line_old": 25,
+            "start_line_new": 24,
+            "end_line_new": 25
+          }
+        },
+        "change_classification": {
+          "change_type": "modified",
+          "category": "Critical",
+          "confidence": 0.95,
+          "location": "2.1",
+          "impact_analysis": {
+            "severity": "high",
+            "party_affected": [
+              "Both"
+            ],
+            "rationale": "The GDPR applicability date is changed from 25 May 2018 to 26 May 2018, potentially creating a one-day compliance gap or misalignment with legal requirements."
+          }
+        }
       },
       {
         "change_id": "2",
-        "location": "5.1.1",
-        "change_type": "modified",
-        "category": "Critical",
-        "severity": "high",
-        "party_affected": [
-          "Data Processor",
-          "Data Controller"
-        ],
-        "rationale": "Obligation for Data Processor to implement safety measures changed from 'have the responsibility to implement' to 'may implement', weakening the requirement.",
-        "old_excerpt": "the Data Processor have the responsibility to implement the appropriate a) technical- and b) organizational safety measures.",
-        "new_excerpt": "the Data Processor may implement the appropriate a) technical- and b) organizational safety measures.",
-        "confidence": 0.99
+        "diff_hunk": {
+          "unified_diff": "- The Data Processor have the responsibility to implement the appropriate a) technical- and b) organizational safety measures.\n+ The Data Processor may implement the appropriate a) technical- and b) organizational safety measures.",
+          "old_excerpt": "The Data Processor have the responsibility to implement the appropriate a) technical- and b) organizational safety measures.",
+          "new_excerpt": "The Data Processor may implement the appropriate a) technical- and b) organizational safety measures.",
+          "hunk_header": {
+            "start_line_old": 54,
+            "end_line_old": 55,
+            "start_line_new": 54,
+            "end_line_new": 55
+          }
+        },
+        "change_classification": {
+          "change_type": "modified",
+          "category": "Critical",
+          "confidence": 0.98,
+          "location": "5.1.1",
+          "impact_analysis": {
+            "severity": "high",
+            "party_affected": [
+              "Both"
+            ],
+            "rationale": "Obligation changed from mandatory ('have the responsibility to implement') to permissive ('may implement'), weakening the Data Processor's duty to implement security measures."
+          }
+        }
       },
       {
         "change_id": "3",
-        "location": "5.4.1",
-        "change_type": "modified",
-        "category": "Critical",
-        "severity": "high",
-        "party_affected": [
-          "Data Controller"
-        ],
-        "rationale": "Notification of security breach now requires notification 'within 72 hours', introducing a specific deadline where previously it was 'without unnecessary delay'.",
-        "old_excerpt": "The Data Processor shall notify the Data Controller without unnecessary delay, if the Data Processor is aware of any breach to the Personal Data security.",
-        "new_excerpt": "The Data Processor shall notify the Data Controller without unnecessary delay within 72 hours, if the Data Processor is aware of any breach to the Personal Data security.",
-        "confidence": 0.98
+        "diff_hunk": {
+          "unified_diff": "- The Data Processor shall notify the Data Controller without unnecessary delay, if the Data Processor is aware of any breach to the Personal Data security.\n+ The Data Processor shall notify the Data Controller without unnecessary delay within 72 hours, if the Data Processor is aware of any breach to the Personal Data security.",
+          "old_excerpt": "The Data Processor shall notify the Data Controller without unnecessary delay, if the Data Processor is aware of any breach to the Personal Data security.",
+          "new_excerpt": "The Data Processor shall notify the Data Controller without unnecessary delay within 72 hours, if the Data Processor is aware of any breach to the Personal Data security.",
+          "hunk_header": {
+            "start_line_old": 92,
+            "end_line_old": 93,
+            "start_line_new": 92,
+            "end_line_new": 93
+          }
+        },
+        "change_classification": {
+          "change_type": "modified",
+          "category": "Critical",
+          "confidence": 0.98,
+          "location": "5.4.1",
+          "impact_analysis": {
+            "severity": "high",
+            "party_affected": [
+              "Both"
+            ],
+            "rationale": "Notification timeline for data breaches is now explicitly set to 72 hours, aligning with GDPR but removing flexibility for faster notification."
+          }
+        }
       },
       {
         "change_id": "4",
-        "location": "5.5.2",
-        "change_type": "modified",
-        "category": "Minor",
-        "severity": "low",
-        "party_affected": [
-          "Data Controller"
-        ],
-        "rationale": "Editorial addition of 'and/or' after 'Analysis of consequences concerning Data Protection' clarifies but does not materially alter obligations.",
-        "old_excerpt": "d) Analysis of consequences concerning Data Protection\ne) Precedent hearings",
-        "new_excerpt": "d) Analysis of consequences concerning Data Protection, and/or\ne) Precedent hearings",
-        "confidence": 0.95
+        "diff_hunk": {
+          "unified_diff": "- d) Analysis of consequences concerning Data Protection\n+ d) Analysis of consequences concerning Data Protection, and/or",
+          "old_excerpt": "d) Analysis of consequences concerning Data Protection",
+          "new_excerpt": "d) Analysis of consequences concerning Data Protection, and/or",
+          "hunk_header": {
+            "start_line_old": 104,
+            "end_line_old": 105,
+            "start_line_new": 104,
+            "end_line_new": 105
+          }
+        },
+        "change_classification": {
+          "change_type": "modified",
+          "category": "Minor",
+          "confidence": 0.8,
+          "location": "5.5.2",
+          "impact_analysis": null
+        }
       },
       {
         "change_id": "5",
-        "location": "6.1",
-        "change_type": "modified",
-        "category": "Formatting",
-        "severity": "low",
-        "party_affected": [
-          "Data Controller"
-        ],
-        "rationale": "Section heading changed from 'The obligations of the Data Controller' to 'The obligations of the DataController' (spacing); no substantive impact.",
-        "old_excerpt": "## 6. The obligations of the Data Controller",
-        "new_excerpt": "## 6. The obligations of the DataController",
-        "confidence": 0.9
+        "diff_hunk": {
+          "unified_diff": "- ## **6. The obligations of the Data Controller**\n+ ## **6. The obligations of the DataController**",
+          "old_excerpt": "## **6. The obligations of the Data Controller**",
+          "new_excerpt": "## **6. The obligations of the DataController**",
+          "hunk_header": {
+            "start_line_old": 107,
+            "end_line_old": 108,
+            "start_line_new": 107,
+            "end_line_new": 108
+          }
+        },
+        "change_classification": {
+          "change_type": "modified",
+          "category": "Formatting",
+          "confidence": 0.99,
+          "location": "6",
+          "impact_analysis": null
+        }
       },
       {
         "change_id": "6",
-        "location": "7.1",
-        "change_type": "modified",
-        "category": "Critical",
-        "severity": "high",
-        "party_affected": [
-          "Data Processor",
-          "Data Controller"
-        ],
-        "rationale": "Sub-processor authorization model changed from general authorization to specific prior written authorization, significantly increasing Data Controller's control.",
-        "old_excerpt": "The Data Processor is given general authorization to engage third-parties to process the Personal Data for the Data Controller (\"Sub-Processors\") to the extent that is indicated in a) appendix 3 in this Data Processing Agreement, or b) Instruction from the Data Controller.",
-        "new_excerpt": "The Data Processor must obtain specific prior written authorization from the Data Controller before engaging any third-parties to process the Personal Data for the Data Controller (\"Sub-Processors\"), including those indicated in a) appendix 3 in this Data Processing Agreement, or b) any subsequent Instruction from the Data Controller.",
-        "confidence": 0.99
+        "diff_hunk": {
+          "unified_diff": "- The Data Processor is given general authorization to engage third-parties to process the Personal Data for the Data Controller (\"Sub-Processors\") to the extent that is indicated in a) appendix 3 in this Data Processing Agreement, or b) Instruction from the Data Controller.\n+ The Data Processor must obtain specific prior written authorization from the Data Controller before engaging any third-parties to process the Personal Data for the Data Controller (\"Sub-Processors\"), including those indicated in a) appendix 3 in this Data Processing Agreement, or b) any subsequent Instruction from the Data Controller.",
+          "old_excerpt": "The Data Processor is given general authorization to engage third-parties to process the Personal Data for the Data Controller (\"Sub-Processors\") to the extent that is indicated in a) appendix 3 in this Data Processing Agreement, or b) Instruction from the Data Controller.",
+          "new_excerpt": "The Data Processor must obtain specific prior written authorization from the Data Controller before engaging any third-parties to process the Personal Data for the Data Controller (\"Sub-Processors\"), including those indicated in a) appendix 3 in this Data Processing Agreement, or b) any subsequent Instruction from the Data Controller.",
+          "hunk_header": {
+            "start_line_old": 112,
+            "end_line_old": 113,
+            "start_line_new": 112,
+            "end_line_new": 113
+          }
+        },
+        "change_classification": {
+          "change_type": "modified",
+          "category": "Critical",
+          "confidence": 0.99,
+          "location": "7.1",
+          "impact_analysis": {
+            "severity": "high",
+            "party_affected": [
+              "Data Controller",
+              "Data Processor"
+            ],
+            "rationale": "Sub-processor authorization model changed from general to specific prior written consent, increasing Data Controller's control and Data Processor's administrative burden."
+          }
+        }
       },
       {
         "change_id": "7",
-        "location": "Appendix 3, 1.2",
-        "change_type": "modified",
-        "category": "Critical",
-        "severity": "high",
-        "party_affected": [
-          "Data Processor",
-          "Data Controller"
-        ],
-        "rationale": "General future authorization for new sub-processors removed; now each new sub-processor requires specific prior written consent from the Data Controller.",
-        "old_excerpt": "Generally, the Data Controller accepts that the Data Processor can use other Sub-Processors in the future, if these abide by the guidelines stated in the Data Processing Agreement and moreover, meet the legislation, comprising the General Data Protection Regulation (GDPR).",
-        "new_excerpt": "The Data Controller does not provide general authorization for the Data Processor to use other Sub Processors in the future. Each new Sub-Processor requires specific prior written consent from the Data Controller, even if these abide by the guidelines stated in the Data Processing Agreement and moreover, meet the legislation, comprising the General Data Protection Regulation (GDPR).",
-        "confidence": 0.99
+        "diff_hunk": {
+          "unified_diff": "- ### **1.2**\n- Generally, the Data Controller accepts that the Data Processor can use other Sub-Processors in the future, if these abide by the guidelines stated in the Data Processing Agreement and moreover, meet the legislation, comprising the General Data Protection Regulation (GDPR). The Data Processing Agreement as appendix, will be updated with an extension of the list in the item 1.1. above (appendix 3), provided that the Data Processor will make use of new Sub-Processors.\n+ ### **1.2**\n+ The Data Controller does not provide general authorization for the Data Processor to use other Sub Processors in the future. Each new Sub-Processor requires specific prior written consent from the Data Controller, even if these abide by the guidelines stated in the Data Processing Agreement and moreover, meet the legislation, comprising the General Data Protection Regulation (GDPR). The Data Processing Agreement as appendix, will be updated with an extension of the list in the item 1.1. above (appendix 3), provided that the Data Processor will make use of new Sub-Processors.",
+          "old_excerpt": "Generally, the Data Controller accepts that the Data Processor can use other Sub-Processors in the future, if these abide by the guidelines stated in the Data Processing Agreement and moreover, meet the legislation, comprising the General Data Protection Regulation (GDPR). The Data Processing Agreement as appendix, will be updated with an extension of the list in the item 1.1. above (appendix 3), provided that the Data Processor will make use of new Sub-Processors.",
+          "new_excerpt": "The Data Controller does not provide general authorization for the Data Processor to use other Sub Processors in the future. Each new Sub-Processor requires specific prior written consent from the Data Controller, even if these abide by the guidelines stated in the Data Processing Agreement and moreover, meet the legislation, comprising the General Data Protection Regulation (GDPR). The Data Processing Agreement as appendix, will be updated with an extension of the list in the item 1.1. above (appendix 3), provided that the Data Processor will make use of new Sub-Processors.",
+          "hunk_header": {
+            "start_line_old": 340,
+            "end_line_old": 343,
+            "start_line_new": 340,
+            "end_line_new": 343
+          }
+        },
+        "change_classification": {
+          "change_type": "modified",
+          "category": "Critical",
+          "confidence": 0.99,
+          "location": "Appendix 3, 1.2",
+          "impact_analysis": {
+            "severity": "high",
+            "party_affected": [
+              "Data Controller",
+              "Data Processor"
+            ],
+            "rationale": "General future sub-processor authorization is revoked; each new sub-processor now requires specific prior written consent, increasing Data Controller oversight and Data Processor's compliance obligations."
+          }
+        }
       },
       {
         "change_id": "8",
-        "location": "10.3",
-        "change_type": "modified",
-        "category": "Minor",
-        "severity": "low",
-        "party_affected": [
-          "Both"
-        ],
-        "rationale": "Remuneration currency clarified: Main Agreement rates in DKK, otherwise supplier's rates in EUR; minor clarification of payment terms.",
-        "old_excerpt": "The remuneration is calculated by the agreed hourly rates in the Main Agreement(s), and in case of no agreement, the remuneration is based on the supplier's existing hourly rates.",
-        "new_excerpt": "The remuneration is calculated by the agreed hourly rates (in DKK) in the Main Agreement(s), and in case of no agreement, the remuneration is based on the supplier's existing hourly rates (in EUR).",
-        "confidence": 0.96
+        "diff_hunk": {
+          "unified_diff": "- The Data Processor shall continue to process the Personal Data for up to three months after the termination of the Data Processing Agreement to the extent it is necessary and required under the Applicable Law. In the same period, the Data Processor is entitled to include the Personal Data in the Data Processor's backup. The Data Processor's processing of the Data Controller's Personal Data in the three months after the termination of this Data Processing Agreement shall be considered as being in accordance with the Instruction.\n+ The Data Processor shall immediately delete all Personal Data upon termination of the Data Processing Agreement, except for financial records containing Personal Data which must be retained for seven years to comply with accounting regulations. The Data Processor is not entitled to include the Personal Data in the Data Processor's backup beyond what is strictly required for financial record keeping.",
+          "old_excerpt": "The Data Processor shall continue to process the Personal Data for up to three months after the termination of the Data Processing Agreement to the extent it is necessary and required under the Applicable Law. In the same period, the Data Processor is entitled to include the Personal Data in the Data Processor's backup. The Data Processor's processing of the Data Controller's Personal Data in the three months after the termination of this Data Processing Agreement shall be considered as being in accordance with the Instruction.",
+          "new_excerpt": "The Data Processor shall immediately delete all Personal Data upon termination of the Data Processing Agreement, except for financial records containing Personal Data which must be retained for seven years to comply with accounting regulations. The Data Processor is not entitled to include the Personal Data in the Data Processor's backup beyond what is strictly required for financial record keeping.",
+          "hunk_header": {
+            "start_line_old": 258,
+            "end_line_old": 261,
+            "start_line_new": 258,
+            "end_line_new": 261
+          }
+        },
+        "change_classification": {
+          "change_type": "modified",
+          "category": "Critical",
+          "confidence": 0.99,
+          "location": "13.2.2",
+          "impact_analysis": {
+            "severity": "high",
+            "party_affected": [
+              "Both"
+            ],
+            "rationale": "Retention period for Personal Data after termination is changed from up to three months to immediate deletion, except for financial records (retained for seven years), significantly altering data retention and deletion obligations."
+          }
+        }
       },
       {
         "change_id": "9",
-        "location": "10.4",
-        "change_type": "modified",
-        "category": "Formatting",
-        "severity": "low",
-        "party_affected": [
-          "Data Processor"
-        ],
-        "rationale": "Reference to 'INET-DESIGN ApS' changed to 'INETDESIGN'; no substantive impact.",
-        "old_excerpt": "the Data Processor cannot claim remuneration for assistance or implementation of changes to the extent such assistance or change is a direct consequence of the Data Processor's own violation to this Data Processing Agreement.",
-        "new_excerpt": "INETDESIGN cannot claim remuneration for assistance or implementation of changes to the extent such assistance or change is a direct consequence of the Data Processor's own violation to this Data Processing Agreement.",
-        "confidence": 0.9
+        "diff_hunk": {
+          "unified_diff": "- **13.2.4**\n- With no regard to the expiry of the Data Processing Agreement, the items 12.2, 12.4, 13.2.2, 13.2.4 and 14 of the Agreement shall be continuously effective after the expiry of the Data Processing Agreement.\n+ **13.2.5**\n+ With no regard to the expiry of the Data Processing Agreement, the items 12.2, 12.4, 13.2.2, 13.2.4 and 14 of the Agreement shall be continuously effective after the expiry of the Data Processing Agreement.",
+          "old_excerpt": "**13.2.4**\nWith no regard to the expiry of the Data Processing Agreement, the items 12.2, 12.4, 13.2.2, 13.2.4 and 14 of the Agreement shall be continuously effective after the expiry of the Data Processing Agreement.",
+          "new_excerpt": "**13.2.5**\nWith no regard to the expiry of the Data Processing Agreement, the items 12.2, 12.4, 13.2.2, 13.2.4 and 14 of the Agreement shall be continuously effective after the expiry of the Data Processing Agreement.",
+          "hunk_header": {
+            "start_line_old": 271,
+            "end_line_old": 273,
+            "start_line_new": 271,
+            "end_line_new": 273
+          }
+        },
+        "change_classification": {
+          "change_type": "modified",
+          "category": "Formatting",
+          "confidence": 0.99,
+          "location": "13.2.5",
+          "impact_analysis": null
+        }
       },
       {
         "change_id": "10",
-        "location": "12.1.1",
-        "change_type": "modified",
-        "category": "Minor",
-        "severity": "low",
-        "party_affected": [
-          "Both"
-        ],
-        "rationale": "Reference to 'item 12' changed to 'section 12'; editorial clarification only.",
-        "old_excerpt": "item 12 in the Main Agreement(s)) shall apply equally to this Data Processing Agreement as if this Data Processing Agreement is an integrated part hereof.",
-        "new_excerpt": "section 12 in the Main Agreement(s)) shall apply equally to this Data Processing Agreement as if this Data Processing Agreement is an integrated part hereof.",
-        "confidence": 0.92
+        "diff_hunk": {
+          "unified_diff": "- Each party's cumulated liability under this Data Processing Agreement is limited to the payments made under the Main Agreement in the 12 months before the occurrence of the circumstances leading to a breach of contract. If the Data Processing Agreement has not been in force for 12 months before the occurrence of the circumstances leading to a breach of contract, the limited liability amount is the agreed payment for the Main Services in the period in which the Data Processing Agreement have been effective, divided by the number of month, the Data Processing Agreement have been effective, and then multiplied by 12.\n+ Each party's cumulated liability under this Data Processing Agreement is limited to the payments made under the Main Agreement in the 12 months before the occurrence of the circumstances leading to a breach of contract, except in cases of Personal Data breaches where liability shall be unlimited. If the Data Processing Agreement has not been in force for 12 months before the occurrence of the circumstances leading to a breach of contract, the limited liability amount is the agreed payment for the Main Services in the period in which the Data Processing Agreement have been effective, divided by the number of month, the Data Processing Agreement have been effective, and then multiplied by 12.",
+          "old_excerpt": "Each party's cumulated liability under this Data Processing Agreement is limited to the payments made under the Main Agreement in the 12 months before the occurrence of the circumstances leading to a breach of contract. If the Data Processing Agreement has not been in force for 12 months before the occurrence of the circumstances leading to a breach of contract, the limited liability amount is the agreed payment for the Main Services in the period in which the Data Processing Agreement have been effective, divided by the number of month, the Data Processing Agreement have been effective, and then multiplied by 12.",
+          "new_excerpt": "Each party's cumulated liability under this Data Processing Agreement is limited to the payments made under the Main Agreement in the 12 months before the occurrence of the circumstances leading to a breach of contract, except in cases of Personal Data breaches where liability shall be unlimited. If the Data Processing Agreement has not been in force for 12 months before the occurrence of the circumstances leading to a breach of contract, the limited liability amount is the agreed payment for the Main Services in the period in which the Data Processing Agreement have been effective, divided by the number of month, the Data Processing Agreement have been effective, and then multiplied by 12.",
+          "hunk_header": {
+            "start_line_old": 202,
+            "end_line_old": 205,
+            "start_line_new": 202,
+            "end_line_new": 205
+          }
+        },
+        "change_classification": {
+          "change_type": "modified",
+          "category": "Critical",
+          "confidence": 0.99,
+          "location": "12.2.1",
+          "impact_analysis": {
+            "severity": "high",
+            "party_affected": [
+              "Both"
+            ],
+            "rationale": "Liability cap is removed for Personal Data breaches, making liability unlimited in such cases, which significantly increases risk exposure for both parties."
+          }
+        }
       },
       {
         "change_id": "11",
-        "location": "12.2.1",
-        "change_type": "modified",
-        "category": "Critical",
-        "severity": "high",
-        "party_affected": [
-          "Both"
-        ],
-        "rationale": "Liability for Personal Data breaches is now unlimited, whereas previously all liability was capped to 12 months' payments; this is a material change in risk allocation.",
-        "old_excerpt": "Each party's cumulated liability under this Data Processing Agreement is limited to the payments made under the Main Agreement in the 12 months before the occurrence of the circumstances leading to a breach of contract. If the Data Processing Agreement has not been in force for 12 months before the occurrence of the circumstances leading to a breach of contract, the limited liability amount is the agreed payment for the Main Services in the period in which the Data Processing Agreement have been effective, divided by the number of month, the Data Processing Agreement have been effective, and then multiplied by 12.",
-        "new_excerpt": "Each party's cumulated liability under this Data Processing Agreement is limited to the payments made under the Main Agreement in the 12 months before the occurrence of the circumstances leading to a breach of contract, except in cases of Personal Data breaches where liability shall be unlimited. If the Data Processing Agreement has not been in force for 12 months before the occurrence of the circumstances leading to a breach of contract, the limited liability amount is the agreed payment for the Main Services in the period in which the Data Processing Agreement have been effective, divided by the number of month, the Data Processing Agreement have been effective, and then multiplied by 12.",
-        "confidence": 0.99
+        "diff_hunk": {
+          "unified_diff": "- **12.2.3**\n- The limitation of liability in this item 12.2 does not apply to the following:\n- a) Losses due to the other party's gross negligence or willful misconduct. b) Requirement of payment due to Regulation (EU) 2016/679 article 82, $ 5 of the European Parliament and the Council as well as remuneration due to the Liability and Compensation Act $ 26\n+ **12.2.3**\n+ The limitation of liability in this item 12.2 does not apply to the following:\n+ a) Losses due to the other party's gross negligence or willful misconduct. b) Requirement of payment due to Regulation (EU) 2016/679 article 82, $ 5 of the European Parliament and the Council as well as remuneration due to the Liability and Compensation Act $ 26\n+ c) Any breaches involving Personal Data, for which liability shall be unlimited",
+          "old_excerpt": "The limitation of liability in this item 12.2 does not apply to the following:\na) Losses due to the other party's gross negligence or willful misconduct. b) Requirement of payment due to Regulation (EU) 2016/679 article 82, $ 5 of the European Parliament and the Council as well as remuneration due to the Liability and Compensation Act $ 26",
+          "new_excerpt": "The limitation of liability in this item 12.2 does not apply to the following:\na) Losses due to the other party's gross negligence or willful misconduct. b) Requirement of payment due to Regulation (EU) 2016/679 article 82, $ 5 of the European Parliament and the Council as well as remuneration due to the Liability and Compensation Act $ 26\nc) Any breaches involving Personal Data, for which liability shall be unlimited",
+          "hunk_header": {
+            "start_line_old": 210,
+            "end_line_old": 213,
+            "start_line_new": 210,
+            "end_line_new": 214
+          }
+        },
+        "change_classification": {
+          "change_type": "modified",
+          "category": "Critical",
+          "confidence": 0.99,
+          "location": "12.2.3",
+          "impact_analysis": {
+            "severity": "high",
+            "party_affected": [
+              "Both"
+            ],
+            "rationale": "Explicitly states that liability is unlimited for any breaches involving Personal Data, removing previous liability cap and increasing risk for both parties."
+          }
+        }
       },
       {
         "change_id": "12",
-        "location": "12.2.3",
-        "change_type": "modified",
-        "category": "Critical",
-        "severity": "high",
-        "party_affected": [
-          "Both"
-        ],
-        "rationale": "Explicitly states that limitation of liability does not apply to Personal Data breaches, making such liability unlimited.",
-        "old_excerpt": "The limitation of liability in this item 12.2 does not apply to the following:\na) Losses due to the other party's gross negligence or willful misconduct. b) Requirement of payment due to Regulation (EU) 2016/679 article 82, $ 5 of the European Parliament and the Council as well as remuneration due to the Liability and Compensation Act $ 26",
-        "new_excerpt": "The limitation of liability in this item 12.2 does not apply to the following:\na) Losses due to the other party's gross negligence or willful misconduct. b) Requirement of payment due to Regulation (EU) 2016/679 article 82, $ 5 of the European Parliament and the Council as well as remuneration due to the Liability and Compensation Act $ 26\nc) Any breaches involving Personal Data, for which liability shall be unlimited",
-        "confidence": 0.99
+        "diff_hunk": {
+          "unified_diff": "- The remuneration is calculated by the agreed hourly rates in the Main Agreement(s), and in case of no agreement, the remuneration is based on the supplier's existing hourly rates.\n+ The remuneration is calculated by the agreed hourly rates (in DKK) in the Main Agreement(s), and in case of no agreement, the remuneration is based on the supplier's existing hourly rates (in EUR).",
+          "old_excerpt": "The remuneration is calculated by the agreed hourly rates in the Main Agreement(s), and in case of no agreement, the remuneration is based on the supplier's existing hourly rates.",
+          "new_excerpt": "The remuneration is calculated by the agreed hourly rates (in DKK) in the Main Agreement(s), and in case of no agreement, the remuneration is based on the supplier's existing hourly rates (in EUR).",
+          "hunk_header": {
+            "start_line_old": 176,
+            "end_line_old": 177,
+            "start_line_new": 176,
+            "end_line_new": 177
+          }
+        },
+        "change_classification": {
+          "change_type": "modified",
+          "category": "Minor",
+          "confidence": 0.95,
+          "location": "10.3",
+          "impact_analysis": null
+        }
       },
       {
         "change_id": "13",
-        "location": "13.2.2",
-        "change_type": "modified",
-        "category": "Critical",
-        "severity": "high",
-        "party_affected": [
-          "Data Processor",
-          "Data Controller"
-        ],
-        "rationale": "Data Processor must now immediately delete all Personal Data upon termination, except for financial records retained for seven years; previously, up to three months' retention and backup was allowed.",
-        "old_excerpt": "The Data Processor shall continue to process the Personal Data for up to three months after the termination of the Data Processing Agreement to the extent it is necessary and required under the Applicable Law. In the same period, the Data Processor is entitled to include the Personal Data in the Data Processor's backup. The Data Processor's processing of the Data Controller's Personal Data in the three months after the termination of this Data Processing Agreement shall be considered as being in accordance with the Instruction.",
-        "new_excerpt": "The Data Processor shall immediately delete all Personal Data upon termination of the Data Processing Agreement, except for financial records containing Personal Data which must be retained for seven years to comply with accounting regulations. The Data Processor is not entitled to include the Personal Data in the Data Processor's backup beyond what is strictly required for financial record keeping.",
-        "confidence": 0.99
+        "diff_hunk": {
+          "unified_diff": "- Notwithstanding the above, the Data Processor cannot claim remuneration for assistance or implementation of changes to the extent such assistance or change is a direct consequence of the Data Processor's own violation to this Data Processing Agreement.\n+ Notwithstanding the above, INETDESIGN cannot claim remuneration for assistance or implementation of changes to the extent such assistance or change is a direct consequence of the Data Processor's own violation to this Data Processing Agreement.",
+          "old_excerpt": "Notwithstanding the above, the Data Processor cannot claim remuneration for assistance or implementation of changes to the extent such assistance or change is a direct consequence of the Data Processor's own violation to this Data Processing Agreement.",
+          "new_excerpt": "Notwithstanding the above, INETDESIGN cannot claim remuneration for assistance or implementation of changes to the extent such assistance or change is a direct consequence of the Data Processor's own violation to this Data Processing Agreement.",
+          "hunk_header": {
+            "start_line_old": 178,
+            "end_line_old": 179,
+            "start_line_new": 178,
+            "end_line_new": 179
+          }
+        },
+        "change_classification": {
+          "change_type": "modified",
+          "category": "Minor",
+          "confidence": 0.9,
+          "location": "10.4",
+          "impact_analysis": null
+        }
       },
       {
         "change_id": "14",
-        "location": "13.2.5",
-        "change_type": "added",
-        "category": "Minor",
-        "severity": "low",
-        "party_affected": [
-          "Both"
-        ],
-        "rationale": "New clause clarifies which sections survive expiry; content is similar to A's 13.2.4 but now numbered 13.2.5.",
-        "old_excerpt": null,
-        "new_excerpt": "With no regard to the expiry of the Data Processing Agreement, the items 12.2, 12.4, 13.2.2, 13.2.4 and 14 of the Agreement shall be continuously effective after the expiry of the Data Processing Agreement.",
-        "confidence": 0.95
-      },
-      {
-        "change_id": "15",
-        "location": "14.2",
-        "change_type": "modified",
-        "category": "Critical",
-        "severity": "high",
-        "party_affected": [
-          "Both"
-        ],
-        "rationale": "Jurisdiction changed from exclusive to Aarhus court to 'any court of competent jurisdiction', broadening possible venues for dispute resolution.",
-        "old_excerpt": "the parties are entitled to demand arbitration in the dispute at a court of law in the Danish court of justice. The court in Aarhus has been chosen as jurisdiction.",
-        "new_excerpt": "the parties are entitled to demand arbitration in the dispute at any court of competent jurisdiction.",
-        "confidence": 0.98
+        "diff_hunk": {
+          "unified_diff": "- If the parties cannot reach resolution through negotiation, the parties are entitled to demand arbitration in the dispute at a court of law in the Danish court of justice. The court in Aarhus has been chosen as jurisdiction. However, the referral regulations of the procedural law for the High Court, the Maritime Law and the Commercial Law shall be applied.\n+ If the parties cannot reach resolution through negotiation, the parties are entitled to demand arbitration in the dispute at any court of competent jurisdiction.",
+          "old_excerpt": "If the parties cannot reach resolution through negotiation, the parties are entitled to demand arbitration in the dispute at a court of law in the Danish court of justice. The court in Aarhus has been chosen as jurisdiction. However, the referral regulations of the procedural law for the High Court, the Maritime Law and the Commercial Law shall be applied.",
+          "new_excerpt": "If the parties cannot reach resolution through negotiation, the parties are entitled to demand arbitration in the dispute at any court of competent jurisdiction.",
+          "hunk_header": {
+            "start_line_old": 299,
+            "end_line_old": 302,
+            "start_line_new": 299,
+            "end_line_new": 300
+          }
+        },
+        "change_classification": {
+          "change_type": "modified",
+          "category": "Critical",
+          "confidence": 0.98,
+          "location": "14.2",
+          "impact_analysis": {
+            "severity": "high",
+            "party_affected": [
+              "Both"
+            ],
+            "rationale": "Jurisdiction is changed from Danish court in Aarhus to any court of competent jurisdiction, broadening possible venues and increasing legal uncertainty."
+          }
+        }
       }
     ],
-    "summary": "Document B introduces several critical changes: (1) Sub-processor engagement now requires specific prior written authorization, removing general authorization; (2) Liability for Personal Data breaches is now unlimited; (3) Data Processor must delete Personal Data immediately upon termination, except for financial records; (4) Security breach notification must occur within 72 hours; (5) Jurisdiction is broadened from Aarhus to any competent court. These materially increase the Data Controller's control and potential liability exposure for both parties."
+    "summary": "Document B introduces several critical changes: (1) The GDPR applicability date is shifted by one day; (2) Security obligations for the Data Processor are weakened from mandatory to permissive; (3) Data breach notification is now explicitly required within 72 hours; (4) Sub-processor engagement requires specific prior written consent, removing general authorization; (5) Data retention after termination is shortened to immediate deletion except for financial records; (6) Liability for Personal Data breaches is now unlimited; (7) Jurisdiction is broadened from Aarhus to any competent court. These changes significantly increase the Data Controller's control and both parties' risk exposure."
   }
 }

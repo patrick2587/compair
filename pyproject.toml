@@ -22,6 +22,8 @@ include = ["compair"]
 
 [dependency-groups]
 dev = [
+    "darglint>=1.8.1",
+    "mypy>=1.17.1",
     "pytest>=8.4.1",
     "ruff>=0.12.11",
 ]
@@ -39,3 +41,12 @@ docstring-code-format = true
 log_cli = true
 log_cli_level = "INFO"
 log_cli_format = "%(asctime)s %(levelname)s %(name)s: %(message)s"
+
+[tool.mypy]
+
+files = "compair"
+follow_imports="skip"
+python_version = "3.12"
+ignore_missing_imports = "True"
+show_error_codes = "True"
+pretty = "True"

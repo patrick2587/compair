@@ -13,14 +13,14 @@ RESULTS_DIR = Path(__file__).parent.parent / "generated"
 @pytest.mark.skipif(
     not os.environ.get("OPENAI_API_KEY"), reason="Requires OPENAI_API_KEY to run LLM test"
 )
-@pytest.mark.parametrize("analysis_type", ["light"])
-def test_run_llm_heavy(analysis_type: str) -> None:
+@pytest.mark.parametrize("analysis_type", ["light", "heavy"])
+def test_run_llm(analysis_type: str) -> None:
     pdf_a = RESOURCES_DIR / "1.pdf"
     pdf_b = RESOURCES_DIR / "2.pdf"
 
     if analysis_type == "heavy":
         report = run_llm_heavy(pdf_a, pdf_b)
-    if analysis_type == "light":
+    elif analysis_type == "light":
         report = run_llm_light(pdf_a, pdf_b)
     else:
         raise ValueError(f"Invalid analysis type: {analysis_type}")

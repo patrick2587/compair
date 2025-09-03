@@ -15,31 +15,9 @@
           "description": "Stable identifier for the change (e.g. UUID).",
           "title": "Change Id"
         },
-        "old_excerpt": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Minimal snippet from document A.",
-          "title": "Old Excerpt"
-        },
-        "new_excerpt": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Minimal snippet from document B.",
-          "title": "New Excerpt"
+        "diff_hunk": {
+          "$ref": "#/$defs/DiffHunk",
+          "description": "The diff hunk of the change."
         },
         "change_classification": {
           "$ref": "#/$defs/ChangeClassification",
@@ -47,6 +25,7 @@
         }
       },
       "required": [
+        "diff_hunk",
         "change_classification"
       ],
       "title": "Change",
@@ -121,6 +100,51 @@
       "title": "ChangeClassification",
       "type": "object"
     },
+    "DiffHunk": {
+      "properties": {
+        "unified_diff": {
+          "description": "The unified diff of the two documents.",
+          "title": "Unified Diff",
+          "type": "string"
+        },
+        "old_excerpt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The old excerpt of the change.",
+          "title": "Old Excerpt"
+        },
+        "new_excerpt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The new excerpt of the change.",
+          "title": "New Excerpt"
+        },
+        "hunk_header": {
+          "$ref": "#/$defs/HunkHeader",
+          "description": "The hunk header of the change."
+        }
+      },
+      "required": [
+        "unified_diff",
+        "hunk_header"
+      ],
+      "title": "DiffHunk",
+      "type": "object"
+    },
     "DifferenceReport": {
       "properties": {
         "changes": {
@@ -149,6 +173,38 @@
         "changes"
       ],
       "title": "DifferenceReport",
+      "type": "object"
+    },
+    "HunkHeader": {
+      "properties": {
+        "start_line_old": {
+          "description": "The start line of the change.",
+          "title": "Start Line Old",
+          "type": "integer"
+        },
+        "end_line_old": {
+          "description": "The end line of the change.",
+          "title": "End Line Old",
+          "type": "integer"
+        },
+        "start_line_new": {
+          "description": "The start line of the change.",
+          "title": "Start Line New",
+          "type": "integer"
+        },
+        "end_line_new": {
+          "description": "The end line of the change.",
+          "title": "End Line New",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start_line_old",
+        "end_line_old",
+        "start_line_new",
+        "end_line_new"
+      ],
+      "title": "HunkHeader",
       "type": "object"
     },
     "ImpactAnalysis": {

@@ -3,7 +3,7 @@ from difflib import unified_diff
 
 from pymupdf4llm import to_markdown
 
-from compair.models import UnifiedDiff
+from compair.models import DiffHunk
 
 __all__ = ["cleanup_markdown", "diff_texts", "get_markdown_from_pdf", "parse_pdf_to_markdown"]
 
@@ -16,6 +16,9 @@ def parse_pdf_to_markdown(file_path: str) -> str:
 
     Returns:
         The extracted markdown text. If no text can be extracted, returns an empty string.
+
+    Raises:
+        ValueError: If ``file_path`` is not a non-empty string.
     """
     if not isinstance(file_path, str) or not file_path.strip():
         raise ValueError("file_path must be a non-empty string")
@@ -39,6 +42,9 @@ def cleanup_markdown(markdown_text: str) -> str:
 
     Returns:
         A normalized markdown string with reduced noise.
+
+    Raises:
+        ValueError: If ``markdown_text`` is not a string.
     """
     if not isinstance(markdown_text, str):
         raise ValueError("markdown_text must be a string")
@@ -70,37 +76,7 @@ def cleanup_markdown(markdown_text: str) -> str:
     return normalized
 
 
-def convert_unified_diff_to_model(diff_lines: list[str]) -> UnifiedDiff:
-    """Convert a unified diff string to a UnifiedDiff model."""
-    result: list[UnifiedDiff] = []
-
-    current_diff_lines = []
-    current_new_excerpt = ""
-    current_old_excerpt = ""
-    for line in diff_lines:
-        if line.startswith("@@"):
-            if current_diff_lines:
-                result.append(
-                    UnifiedDiff(
-                        unified_diff="\n".join(current_diff_lines),
-                        old_excerpt=current_old_excerpt,
-                        new_excerpt=current_new_excerpt,
-                    )
-                )
-            current_diff_lines = []
-            current_new_excerpt = ""
-            current_old_excerpt = ""
-        if line.startswith("+"):
-            current_new_excerpt += line[1:]
-        if line.startswith("-"):
-            current_old_excerpt += line[1:]
-        current_diff_lines.append(line)
-
-    logging.info(f"Converted unified diff into {len(result)} hunks")
-    return result
-
-
-def diff_texts(text_a: str, text_b: str, n_context_lines: int = 3) -> list[UnifiedDiff]:
+def diff_texts(text_a: str, text_b: str, n_context_lines: int = 3) -> list[DiffHunk]:
     """Compute a unified diff between two markdown strings.
 
     Args:
@@ -109,8 +85,10 @@ def diff_texts(text_a: str, text_b: str, n_context_lines: int = 3) -> list[Unifi
         n_context_lines: Number of context lines to include in the diff.
 
     Returns:
-        A unified diff string representing the differences between ``text_a`` and ``text_b``.
-        Returns an empty string when there are no differences.
+        A list of ``DiffHunk`` objects representing the differences between ``text_a`` and ``text_b``.
+
+    Raises:
+        ValueError: If either input is not a string.
     """
     if not isinstance(text_a, str) or not isinstance(text_b, str):
         raise ValueError("Both inputs must be strings")
@@ -122,13 +100,26 @@ def diff_texts(text_a: str, text_b: str, n_context_lines: int = 3) -> list[Unifi
         f"Computing unified diff: len(A)={len(lines_a)} lines, len(B)={len(lines_b)} lines, context={n_context_lines}"
     )
     diff_lines = list(unified_diff(lines_a, lines_b, lineterm="", n=n_context_lines))
-    hunks = convert_unified_diff_to_model(diff_lines[2:])
+    hunks = DiffHunk.from_unified_diff_lines(diff_lines[2:])
     logging.info(f"Unified diff produced {len(hunks)} hunks")
     return hunks
 
 
 def get_markdown_from_pdf(pdf_path: str) -> str:
-    """Get the markdown text from a PDF file."""
+    """Get the markdown text from a PDF file.
+
+    Args:
+        pdf_path: Path to the PDF file.
+
+    Returns:
+        Cleaned markdown extracted from the PDF file.
+
+    Raises:
+        ValueError: If the provided path is invalid.
+    """
+    if not isinstance(pdf_path, str) or not pdf_path.strip():
+        raise ValueError("pdf_path must be a non-empty string")
+
     logging.info(f"Extracting markdown from PDF: {pdf_path}")
     text = parse_pdf_to_markdown(str(pdf_path))
     cleaned = cleanup_markdown(text)
