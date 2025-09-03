@@ -13,22 +13,23 @@
     ```
   - Docs: [`https://docs.astral.sh/uv/`](https://docs.astral.sh/uv/)
 
-- **LLM API**: The implementation uses the OpenAI LLM APIs which can be used via OpenAI or Azure. This requires to provide an API key in the `.env` file. To configure one of both is enough. *NOTE*: the end-to-end approach *LLM-only* relies on PDF file upload and will only work with OpenAI, not AzureOpenAI.
+- **LLM API**: The implementation uses the OpenAI LLM APIs which can be used via OpenAI or Azure. This requires to provide an API key in a `.env` file. To configure one of both is enough. 
+*NOTE*: the end-to-end approach *LLM-only* relies on PDF file upload and will only work with OpenAI, not AzureOpenAI.
 
-  ```bash
+```bash
 OPENAI_API_KEY=...
 AZURE_OPENAI_ENDPOINT=...
 AZURE_OPENAI_API_KEY=...
-
-  ```
-
+```
 
 ## CLI tools usage
-  - **Help message**:
-  ```bash
-  uv run compair --help
-  ```
-  ```bash
+
+- **Help message**:
+```bash
+uv run compair --help
+```
+
+```bash
 usage: compair [-h] [-o OUTPUT] [-a {llm-light,llm-heavy,llm-only}] file1 file2
 
 CLI tool for AI-based legal document comparison.
@@ -43,12 +44,12 @@ options:
                         Path to the output json file
 -a {llm-light,llm-heavy,llm-only}, --analysis-type {llm-light,llm-heavy,llm-only}
                         Type of analysis to perform
-  ```
+```
 
-  - **Run on exmaple data**:
-  ```bash
-  uv run compair tests/resources/1.pdf tests/resources/2.pdf -o generated/llm_light_diff_report.json -a llm-light
-  ```
+- **Run on exmaple data**:
+```bash
+uv run compair tests/resources/1.pdf tests/resources/2.pdf -o generated/llm_light_diff_report.json -a llm-light
+```
 
 ## Developer Usage
 
@@ -126,6 +127,15 @@ Features:
 - Hover cards with details (change type, severity, party, rationale, ...)
 - Synced scrolling between panes
 - Upload a JSON file (matching `generated/api.json` schema) to render
+
+Prerequisites:
+- Node.js 18+ and npm. Install via Homebrew or nvm, e.g.:
+  ```bash
+  brew install node
+  # or using nvm
+  # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+  # nvm install --lts
+  ```
 
 Getting started:
 ```bash

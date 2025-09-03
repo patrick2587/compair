@@ -36,7 +36,7 @@ def app():
     args = parser.parse_args()
 
     # Print greeting
-    logging.info(f"Hello, {args.file1} and {args.file2}!")
+    logging.info(f"Processing {args.file1} and {args.file2} with {args.analysis_type} analysis type!")
 
     if args.analysis_type == "llm-light":
         result = llm.run_llm_light(args.file1, args.file2)

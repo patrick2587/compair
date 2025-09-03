@@ -1,3 +1,5 @@
+"""Module for preprocessing PDF files for LLM-based analysis."""
+
 import logging
 from difflib import unified_diff
 
