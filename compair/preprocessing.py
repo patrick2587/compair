@@ -1,8 +1,8 @@
 """Module for preprocessing PDF files for LLM-based analysis."""
 
 import logging
-from difflib import unified_diff
 import re
+from difflib import unified_diff
 
 from pymupdf4llm import to_markdown
 

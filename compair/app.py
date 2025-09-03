@@ -1,6 +1,6 @@
 import argparse
-import logging
 import json
+import logging
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -37,7 +37,9 @@ def app():
     args = parser.parse_args()
 
     # Print greeting
-    logging.info(f"Processing {args.file1} and {args.file2} with {args.analysis_type} analysis type!")
+    logging.info(
+        f"Processing {args.file1} and {args.file2} with {args.analysis_type} analysis type!"
+    )
 
     if args.analysis_type == "llm-light":
         report = pipelines.run_llm_light(args.file1, args.file2)
